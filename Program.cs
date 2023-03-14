@@ -14,8 +14,8 @@ var CPULoadTask = () => {
         Thread.Sleep(1000);
     }
 }; 
-//Estimate number of tasks to run min: 1 max: number of cores - 1 
-int maxCPUs = (Environment.ProcessorCount > 1 ) ? Environment.ProcessorCount - 1 : 1; 
+
+int maxCPUs = Environment.ProcessorCount; 
 for (int cpu = 1; cpu <= maxCPUs; cpu++ ){
     Task.Run(CPULoadTask);
 }
