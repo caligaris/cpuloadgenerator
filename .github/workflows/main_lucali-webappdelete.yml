@@ -42,6 +42,11 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+      - name: Azure CLI login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}        
+    
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
@@ -53,5 +58,4 @@ jobs:
         with:
           app-name: 'lucali-webappdelete'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_956DD5691312477DBE63A020B8E869A1 }}
           package: .
